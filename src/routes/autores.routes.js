@@ -28,6 +28,17 @@ router.get("/:id", (req, res) => {
   res.json(autor);
 });
 
+// POST /autores → cria e devolve 201
+router.post("/", (req, res) => {
+  const parsed = AutorCreateSchema.safeParse(req.body);
+  if (!parsed.success) {
+    return res.status(422).json({ erro: "Dados inválidos", detalhes: parsed.error.issues });
+  }
+  const novo = { id: proximoId(), ...parsed.data };
+  autores.push(novo);
+  res.status(201).json(novo);
+});
+
 // ⬇️ AS PRÓXIMAS ROTAS ENTRAM AQUI ⬇️
 
 module.exports = router;
