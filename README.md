@@ -93,3 +93,7 @@ As rotas foram testadas no Postman, usando um environment `BiblioTech - Local` c
 ## Autor
 
 Yan Nicolas — [github.com/YanNicolas0](https://github.com/YanNicolas0)
+
+## Status
+
+Módulo 2 concluído: CRUD de Livros e Autores com dados em memória.
