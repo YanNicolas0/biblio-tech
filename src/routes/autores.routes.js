@@ -20,6 +20,14 @@ router.get("/", (req, res) => {
   res.json({ total: resultado.length, autores: resultado });
 });
 
+// GET /autores/:id → retorna 1 autor ou 404
+router.get("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const autor = autores.find((a) => a.id === id);
+  if (!autor) return res.status(404).json({ erro: "Autor não encontrado" });
+  res.json(autor);
+});
+
 // ⬇️ AS PRÓXIMAS ROTAS ENTRAM AQUI ⬇️
 
 module.exports = router;
