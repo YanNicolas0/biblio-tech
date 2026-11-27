@@ -34,25 +34,3 @@ router.post("/", (req, res) => {
   if (!parsed.success) {
     return res.status(422).json({ erro: "Dados inválidos", detalhes: parsed.error.issues });
   }
-  const novo = { id: proximoId(), ...parsed.data };
-  autores.push(novo);
-  res.status(201).json(novo);
-});
-
-// PUT /autores/:id → substitui o recurso inteiro
-router.put("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const idx = autores.findIndex((a) => a.id === id);
-  if (idx === -1) return res.status(404).json({ erro: "Autor não encontrado" });
-
-  const parsed = AutorReplaceSchema.safeParse(req.body);
-  if (!parsed.success) {
-    return res.status(422).json({ erro: "Dados inválidos", detalhes: parsed.error.issues });
-  }
-  autores[idx] = { id, ...parsed.data };
-  res.json(autores[idx]);
-});
-
-// ⬇️ AS PRÓXIMAS ROTAS ENTRAM AQUI ⬇️
-
-module.exports = router;
